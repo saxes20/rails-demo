@@ -11,12 +11,13 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.all_ratings
     @ratings_to_show = @all_ratings
     @ratings = params[:ratings]
-    puts @ratings
+    @sort = params[:sort]
 
     if (!@ratings.nil?)
       @ratings_to_show = @ratings.keys
-      @movies = Movie.with_ratings(@ratings_to_show)
     end
+
+    @movies = Movie.with_ratings(@ratings_to_show, @sort)
 
   end
 
